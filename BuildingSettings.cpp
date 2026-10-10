@@ -106,9 +106,9 @@ void DrawBuildingSettingsModal(bool& open_flag, std::vector<BuildingObject>& bui
         temp_bld = buildings[current_bld_idx];
 
         if (current_bld_idx < (int)map.building_texts.size()) {
-            strncpy_s(buf_bld_name, sizeof(buf_bld_name), cp1251_to_utf8(map.building_texts[current_bld_idx].name).c_str(), _TRUNCATE);
-            strncpy_s(buf_bld_owner, sizeof(buf_bld_owner), cp1251_to_utf8(map.building_texts[current_bld_idx].owner).c_str(), _TRUNCATE);
-            strncpy_s(buf_bld_desc, sizeof(buf_bld_desc), AutoWrapString(cp1251_to_utf8(map.building_texts[current_bld_idx].desc), 75).c_str(), _TRUNCATE);
+            snprintf(buf_bld_name, sizeof(buf_bld_name), "%s", cp1251_to_utf8(map.building_texts[current_bld_idx].name).c_str());
+            snprintf(buf_bld_owner, sizeof(buf_bld_owner), "%s", cp1251_to_utf8(map.building_texts[current_bld_idx].owner).c_str());
+            snprintf(buf_bld_desc, sizeof(buf_bld_desc), "%s", AutoWrapString(cp1251_to_utf8(map.building_texts[current_bld_idx].desc), 75).c_str());
         }
         else {
             buf_bld_name[0] = '\0'; buf_bld_owner[0] = '\0'; buf_bld_desc[0] = '\0';

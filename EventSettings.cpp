@@ -38,9 +38,9 @@ void DrawEventSettingsModal(bool& open_flag, MapData& map, int& selected_idx, Re
             temp_event = map.events[idx];
 
             if (idx < (int)map.event_texts.size()) {
-                strncpy_s(buf_name, sizeof(buf_name), cp1251_to_utf8(map.event_texts[idx].name).c_str(), _TRUNCATE);
-                strncpy_s(buf_question, sizeof(buf_question), cp1251_to_utf8(map.event_texts[idx].question).c_str(), _TRUNCATE);
-                strncpy_s(buf_result, sizeof(buf_result), cp1251_to_utf8(map.event_texts[idx].result).c_str(), _TRUNCATE);
+                snprintf(buf_name, sizeof(buf_name), "%s", cp1251_to_utf8(map.event_texts[idx].name).c_str());
+                snprintf(buf_question, sizeof(buf_question), "%s", cp1251_to_utf8(map.event_texts[idx].question).c_str());
+                snprintf(buf_result, sizeof(buf_result), "%s", cp1251_to_utf8(map.event_texts[idx].result).c_str());
             }
             else {
                 buf_name[0] = '\0'; buf_question[0] = '\0'; buf_result[0] = '\0';

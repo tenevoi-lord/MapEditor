@@ -384,13 +384,13 @@ void DrawArmySettingsModal(bool& open_flag, std::vector<ArmyObject>& armies, Map
         if (current_army_idx < (int)map.army_texts.size()) {
             std::string tmp;
             tmp = cp1251_to_utf8(map.army_texts[current_army_idx].name);
-            strncpy_s(buf_name, sizeof(buf_name), tmp.c_str(), _TRUNCATE);
+            snprintf(buf_name, sizeof(buf_name), "%s", tmp.c_str());
             tmp = cp1251_to_utf8(map.army_texts[current_army_idx].leader);
-            strncpy_s(buf_leader, sizeof(buf_leader), tmp.c_str(), _TRUNCATE);
+            snprintf(buf_leader, sizeof(buf_leader), "%s", tmp.c_str());
 
             tmp = cp1251_to_utf8(map.army_texts[current_army_idx].desc);
             tmp = AutoWrapString(tmp, 75);
-            strncpy_s(buf_desc, sizeof(buf_desc), tmp.c_str(), _TRUNCATE);
+            snprintf(buf_desc, sizeof(buf_desc), "%s", tmp.c_str());
         }
         else {
             buf_name[0] = '\0'; buf_leader[0] = '\0'; buf_desc[0] = '\0';

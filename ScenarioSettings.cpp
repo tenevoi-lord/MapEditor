@@ -792,11 +792,11 @@ void DrawScenarioSettingsModal(bool& open_flag, MapData& map, ResourceManager* r
     if (!initialized) {
         ImGui::OpenPopup("Параметры сценария");
 
-        strncpy_s(state.name, sizeof(state.name), cp1251_to_utf8(map.map_name).c_str(), _TRUNCATE);
+        snprintf(state.name, sizeof(state.name), "%s", cp1251_to_utf8(map.map_name).c_str());
         std::string wrapped_desc = AutoWrapString(cp1251_to_utf8(map.map_desc), 69);
-        strncpy_s(state.desc, sizeof(state.desc), wrapped_desc.c_str(), _TRUNCATE);
-        strncpy_s(state.campaign, sizeof(state.campaign), cp1251_to_utf8(map.campaign_name).c_str(), _TRUNCATE);
-        strncpy_s(state.next_map, sizeof(state.next_map), cp1251_to_utf8(map.next_scenario).c_str(), _TRUNCATE);
+        snprintf(state.desc, sizeof(state.desc), "%s", wrapped_desc.c_str());
+        snprintf(state.campaign, sizeof(state.campaign), "%s", cp1251_to_utf8(map.campaign_name).c_str());
+        snprintf(state.next_map, sizeof(state.next_map), "%s", cp1251_to_utf8(map.next_scenario).c_str());
 
         state.victory_event = map.victory_event_id;
         state.defeat_event = map.defeat_event_id;
