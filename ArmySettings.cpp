@@ -3,7 +3,7 @@
 #include <imgui.h>
 #include <cstring>
 #include <algorithm>
-#include <gl/GL.h>
+#include <GLFW/glfw3.h>
 #include <cstdint>
 #include <string>
 #include <vector>
