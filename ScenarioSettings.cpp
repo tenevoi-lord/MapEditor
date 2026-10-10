@@ -7,6 +7,7 @@
 #include <cstring>
 #include <cstdio>
 #include <cfloat>
+#include <cmath>
 #include <fstream>      // <-- ДОБАВЛЕНО для std::ifstream
 #include "MapParser.h"
 
@@ -264,6 +265,7 @@ static std::string SavePngFileDialog() {
 static std::string OpenLitFileDialog() { return ""; }
 static std::string SavePngFileDialog() { return ""; }
 static void StartDragDropToExplorer(GLuint, int, int) {}
+static bool SaveTextureToPng(GLuint tex, int w, int h, const std::wstring& outPath) { return false; }
 #endif
 
 
