@@ -1,0 +1,47 @@
+name: Build MapEditor
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        # Собираем под Windows и Ubuntu
+        os: [windows-latest, ubuntu-latest]
+        build_type: [Release]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install Linux Dependencies
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xorg-dev libgl1-mesa-dev libx11-dev libxrandr-dev libxi-dev
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{ matrix.build_type }}
+
+    - name: Upload Windows Artifact
+      if: runner.os == 'Windows'
+      uses: actions/upload-artifact@v4
+      with:
+        name: MapEditor-Windows
+        path: ${{github.workspace}}/build/Release/MapEditor.exe
+
+    - name: Upload Linux Artifact
+      if: runner.os == 'Linux'
+      uses: actions/upload-artifact@v4
+      with:
+        name: MapEditor-Linux
+        path: ${{github.workspace}}/build/MapEditor
